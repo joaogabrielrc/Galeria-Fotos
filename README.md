@@ -19,4 +19,9 @@ Este repositório contém a **Funcionalidade de Galeria de Fotos** desenvolvido 
 
 ## Começando
 
-Para executar este projeto localmente, utilize o comando `docker compose up -d --build`.
+Para executar este projeto localmente, siga os passos abaixo:
+
+1. Utilize o comando `docker compose up -d --build` para iniciar o servidor e o banco de dados.
+2. Navegue até a pasta `mobile` com `cd mobile`.
+3. Execute `npm install` para instalar as dependências necessárias.
+4. Por fim, rode `npm run android` para iniciar o aplicativo no emulador Android ou em um dispositivo conectado.
