@@ -32,7 +32,7 @@ services:
     environment:
       - NODE_ENV=development
       - APP_PORT=8000
-      - APP_HOST=rozzet_gallery_app_1
+      - APP_HOST=0.0.0.0
       - TZ=UTC
       - DATABASE_CONNECTION=postgres
       - DATABASE_HOST=rozzet_gallery_postgres_1
