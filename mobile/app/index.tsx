@@ -52,7 +52,6 @@ export default function HomeScreen() {
   const onPressSelectImage = async (useLibrary: boolean) => {
     const options: ImagePicker.ImagePickerOptions = {
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
     };
@@ -103,14 +102,34 @@ export default function HomeScreen() {
   const uploadImage = async (uri: string) => {
     setLoading(true);
 
-    await FileSystem.uploadAsync("https://example.com/upload", uri, {
-      httpMethod: "POST",
-      uploadType: FileSystem.FileSystemUploadType.MULTIPART,
-      fieldName: "file",
-      mimeType: "image/jpeg",
-    });
+    try {
+      const uploadResult = await FileSystem.uploadAsync(
+        "http://localhost:8080/api/v1/upload/image",
+        uri,
+        {
+          httpMethod: "POST",
+          uploadType: FileSystem.FileSystemUploadType.MULTIPART,
+          fieldName: "file",
+          mimeType: "image/jpeg",
+        }
+      );
 
-    setLoading(false);
+      if (uploadResult.status !== 201) {
+        throw new Error(
+          "Erro ao fazer upload da imagem, tente novamente mais tarde."
+        );
+      }
+
+      Alert.alert("Imagem enviada com sucesso.");
+    } catch (error) {
+      console.error(error);
+      Alert.alert(
+        "Não foi possível enviar a imagem.",
+        (error as Error).message
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   const onPressFullImage = (uri: string) => {
