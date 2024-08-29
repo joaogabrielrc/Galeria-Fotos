@@ -52,7 +52,7 @@ export class UploadController {
     @UploadedFile(
       new ParseFilePipe({
         validators: [
-          new MaxFileSizeValidator({ maxSize: 1024 * 1024 * 2 + 1 }), // 2MB
+          new MaxFileSizeValidator({ maxSize: 1024 * 1024 * 25 + 1 }), // 25MB
           new FileTypeValidator({ fileType: "image/jpeg" }),
         ],
       })
